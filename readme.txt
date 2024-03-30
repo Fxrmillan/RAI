@@ -7,3 +7,10 @@ To test this code:
     C:\xampp\htdocs
 5. After that, open any browser an go to:
     localhost/rai/index.php
+
+NOTE:
+You need a database, username, and password that matches the corresponding variables in the file 'connection.php'
+	- By default, XAMPP uses the username 'root' and an empty string as a password
+You need a table that matches the query in the file 'login.php'
+	- In our specific example, our table is called 'users', and it contains the columns 'username' and 'password'
+For instructions on how to set it up, read the file 'Creating a local database for testing using XAMPP'

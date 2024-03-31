@@ -11,6 +11,9 @@ To test this code:
 NOTE:
 You need a database, username, and password that matches the corresponding variables in the file 'connection.php'
 	- By default, XAMPP uses the username 'root' and an empty string as a password
-You need a table that matches the query in the file 'login.php'
-	- In our specific example, our table is called 'users', and it contains the columns 'username' and 'password'
-For instructions on how to set it up, read the file 'Creating a local database for testing using XAMPP'
+In the database, you will need the following:
+	- A table called 'users' with the columns 'username' and 'password' (in our testing, all were set as VARCHAR)
+    - A table called 'siteinformation' with the columns 'siteName', 'networkName', and 'prefixName' (in our testing, all were set as VARCHAR)
+    - A table called 'creditaccount' with the columns 'username', 'authorized', 'notAuthorized', 'notPaeidAuthorized', and 'totalSold' (in our testing, 'username' was a VARCHAR and the rest were INT)
+
+**For instructions on how to set it up, read the file 'Creating a local database for testing using XAMPP'**

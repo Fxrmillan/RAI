@@ -31,7 +31,7 @@
             // Initialize DataTable
             var table = $('#example').DataTable({
                 "ajax": {
-                    "url": "subscribersLogic.php",
+                    "url": "logic/subscribersLogic.php",
                     "dataSrc": ''
                 },
                 "columns": [
@@ -48,7 +48,7 @@
             $('#example').on('click', 'button#deleteBtn', function (e) {
                 var data = table.row($(this).parents('tr')).data();
                 var siteName = data["siteName"]
-                $.post("deleteRowFromDb.php", {siteName},
+                $.post("logic/deleteRowFromDb.php", {siteName},
                     function(data)
                     {
                     alert(data);

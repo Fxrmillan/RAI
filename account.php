@@ -1,7 +1,7 @@
 <?php 
     include("connection.php");
     session_start(); // has to be here to use $_SESSION
-    include("accountLogic.php");
+    include("logic/accountLogic.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

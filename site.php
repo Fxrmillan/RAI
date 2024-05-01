@@ -1,7 +1,13 @@
 <?php 
-    include("connection.php");
-    include("siteLogic.php");
-    session_start(); // has to be here to use $_SESSION
+	include("connection.php");
+	include("logic/siteLogic.php");
+	session_start(); // has to be here to use $_SESSION
+		    
+	// Check if the user is not logged in, redirect to login page
+	if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+		header('Location: index.php');
+		exit; // Important to prevent further script execution
+	}
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +21,8 @@
 <?php
 include("navbar.php");
 ?>
-<h1>Site Name:<?php printSiteName($siteData["siteName"]); ?><h1>
-<h1>Networ Name:<?php printNetworkName($siteData["networkName"]); ?><h1>
-<h1>Prefix Name:<?php printPrefixName($siteData["prefixName"]); ?><h1>
+<h1>Site Name:&nbsp;<?php printSiteName($siteData["siteName"]); ?><h1>
+<h1>Network Name:&nbsp;<?php printNetworkName($siteData["networkName"]); ?><h1>
+<h1>Prefix Name:&nbsp;<?php printPrefixName($siteData["prefixName"]); ?><h1>
 </body>
 </html>

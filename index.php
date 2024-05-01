@@ -1,6 +1,6 @@
 <?php 
     include("connection.php");
-    include("login.php")
+    //include("login.php");
 ?>
     
 <html>
@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        
+       
         <div id="form">
             <h1>Login Form</h1>
             <form name="form" action="login.php" onsubmit="return isvalid()" method="POST">
@@ -39,6 +39,6 @@
                 }
                 
             }
-        </script>
+        </script> 
     </body>
 </html>

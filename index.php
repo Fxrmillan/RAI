@@ -52,7 +52,15 @@ o<?php
     	}
 
         ?>
-
+	<script>
+            function isvalid(){
+                var user = document.form.user.value;
+                var pass = document.form.pass.value;
+                if(user.length=="" || pass.length==""){
+                    return false;
+                }
+            }
+        </script> 
       
     </body>
 </html>

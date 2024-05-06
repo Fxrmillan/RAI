@@ -1,8 +1,11 @@
 <?php 
 	include("connection.php");
 	include("logic/siteLogic.php");
-	session_start(); // has to be here to use $_SESSION
-		    
+
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
+
 	// Check if the user is not logged in, redirect to login page
 	if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
 		header('Location: index.php');
@@ -20,9 +23,11 @@
 <body>
 <?php
 include("navbar.php");
+// TODO test translation after done with functionality
+// echo "English"._("Site")."English";
 ?>
-<h1>Site Name:&nbsp;<?php printSiteName($siteData["siteName"]); ?><h1>
-<h1>Network Name:&nbsp;<?php printNetworkName($siteData["networkName"]); ?><h1>
-<h1>Prefix Name:&nbsp;<?php printPrefixName($siteData["prefixName"]); ?><h1>
+<h1>Site Name:&nbsp;<?php printSiteName($siteData); ?><h1>
+<h1>Network Name:&nbsp;<?php printNetworkName($siteData); ?><h1>
+<h1>Prefix Name:&nbsp;<?php printPrefixName($siteData); ?><h1>
 </body>
 </html>

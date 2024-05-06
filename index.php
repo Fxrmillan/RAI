@@ -18,6 +18,14 @@
                 <input type="text" id="user" name="username"></br></br>
                 <label>Password: </label>
                 <input type="password" id="pass" name="password"></br></br>
+                <label>Language: </label>
+                <select name="language" id="language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <!-- <option value="es" <?=($language=='es') ? 'selected="selected"' : ''?>data-imagesrc="img/es<?=$_code['es']?>_flag.png">Español</option>
+                    <option value="pt_BR" <?=($language=='pt_BR') ? 'selected="selected"' : ''?>data-imagesrc="img/br_flag.png">Português</option>
+                    <option value="en" <?=($language=='en') ? 'selected="selected"' : ''?>data-imagesrc="img/en<?=$_code['en']?>_flag.png">English</option> -->
+                </select></br></br>
                 <input type="submit" id="btn" value="Login" name = "submit"/>
             </form>
         </div>

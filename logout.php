@@ -1,22 +1,31 @@
 <?php
-session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-// Unset all of the session variables
-$_SESSION = array();
+    // Check if the user is not logged in, redirect to login page
+    if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+        header('Location: index.php');
+        exit; // Important to prevent further script execution
+    }
 
-// If it's desired to kill the session, also delete the session cookie.
-// Note: This will destroy the session, and not just the session data!
-// if (ini_get("session.use_cookies")) {
-//     $params = session_get_cookie_params();
-//     setcookie(session_name(), '', time() - 42000,
-//         $params["path"], $params["domain"],
-//         $params["secure"], $params["httponly"]
-//     );
-// }
+    // Unset all of the session variables
+    $_SESSION = array();
 
-// Finally, destroy the session.
-session_destroy();
+    // If it's desired to kill the session, also delete the session cookie.
+    // Note: This will destroy the session, and not just the session data!
+    // if (ini_get("session.use_cookies")) {
+    //     $params = session_get_cookie_params();
+    //     setcookie(session_name(), '', time() - 42000,
+    //         $params["path"], $params["domain"],
+    //         $params["secure"], $params["httponly"]
+    //     );
+    // }
 
-// Redirect to login page
-header('Location: index.php');
-exit;
+    // Finally, destroy the session.
+    session_destroy();
+
+    // Redirect to login page
+    header('Location: index.php');
+    exit;
+?>

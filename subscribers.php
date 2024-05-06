@@ -1,3 +1,15 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Check if the user is not logged in, redirect to login page
+    if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+        header('Location: index.php');
+        exit; // Important to prevent further script execution
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +47,11 @@
                     "dataSrc": ''
                 },
                 "columns": [
-                    { data: "siteName" },
+                    { data: "siteName" }, // TODO
                     { data: "networkName" },
                     { data: "prefixName" },
                     { data: null, defaultContent: '<button id="deleteBtn">Delete!</button>' },
-                    { data: null, defaultContent: '<button>Click!</button>' }   
-
+                    { data: null, defaultContent: '<button>Click!</button>' }
                 ]
             });
 

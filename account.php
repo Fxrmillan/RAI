@@ -33,11 +33,11 @@ p {
 </style>
 <div style="text-align:center"> 
 <img src="assets\userIconTest.PNG">
-<p>Credit Allocated </p>
-<p>Authorised: <?=number_format($c_both)?> MXN</p>
-<p>Not Authorised: <?=number_format($c_na)?> MXN</p>
-<p>Not Paid, Authorised: <?=number_format($c_not_paid_auth)?> MXN</p>
-<p>Total sold to authorised Users: <?=number_format($c_both + $c_not_paid_auth,2)?> MXN</p>
+<p><?=echo_('Credit Allocated')?> </p>
+<p><?=echo_('Authorised')?>: <?=number_format($c_both)?> MXN</p>
+<p><?=echo_('Not Authorised')?>: <?=number_format($c_na)?> MXN</p>
+<p><?=echo_('Not Paid, Authorised')?>: <?=number_format($c_not_paid_auth)?> MXN</p>
+<p><?=echo_('Total sold to authorised Users')?>: <?=number_format($c_both + $c_not_paid_auth,2)?> MXN</p>
 </div>
 </body>
 </html>

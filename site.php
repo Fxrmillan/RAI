@@ -26,8 +26,8 @@ include("navbar.php");
 // TODO test translation after done with functionality
 // echo "English"._("Site")."English";
 ?>
-<h1>Site Name:&nbsp;<?php printSiteName($siteData); ?><h1>
-<h1>Network Name:&nbsp;<?php printNetworkName($siteData); ?><h1>
-<h1>Prefix Name:&nbsp;<?php printPrefixName($siteData); ?><h1>
+<h1><?=echo_('Site name')?>:&nbsp;<?php printSiteName($siteData); ?><h1>
+<h1><?=echo_('Network Name')?>:&nbsp;<?php printNetworkName($siteData); ?><h1>
+<h1><?=echo_('Prefix Name')?>:&nbsp;<?php printPrefixName($siteData); ?><h1>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php 
+o<?php 
     include("connection.php");
     //include("login.php");
 ?>
@@ -12,41 +12,55 @@
     <body>
        
         <div id="form">
-            <h1>Login Form</h1>
+            <h1><?=echo_('Login Form')?></h1> <!-- need to add translation -->
             <form name="form" action="login.php" onsubmit="return isvalid()" method="POST">
-                <label>Username: </label>
+                <label><?=echo_('Username')?>: </label>
                 <input type="text" id="user" name="username"></br></br>
-                <label>Password: </label>
+                <label><?=echo_('Password:')?> </label>
                 <input type="password" id="pass" name="password"></br></br>
                 <label>Language: </label>
-                <select name="language" id="language">
+                <select name="language" id="language"><!-- need to add translation -->
                     <option value="en">English</option>
                     <option value="es">Español</option>
                     <!-- <option value="es" <?=($language=='es') ? 'selected="selected"' : ''?>data-imagesrc="img/es<?=$_code['es']?>_flag.png">Español</option>
                     <option value="pt_BR" <?=($language=='pt_BR') ? 'selected="selected"' : ''?>data-imagesrc="img/br_flag.png">Português</option>
                     <option value="en" <?=($language=='en') ? 'selected="selected"' : ''?>data-imagesrc="img/en<?=$_code['en']?>_flag.png">English</option> -->
                 </select></br></br>
-                <input type="submit" id="btn" value="Login" name = "submit"/>
+                <input type="submit" id="btn" value="<?=echo_('Login')?>"  name = "submit"/>
             </form>
         </div>
-        <script>
+        <?php 
+        $error_txt = "";
+    	if (isset($_POST['submit'])) {
+    		$username = $_POST['username'];
+    		$password = $_POST['password'];
+    		if ($username == "") {
+    			$error_txt .= echo_("Username is empty")."\n";
+    		}
+    		if ($password == "") {
+    			$error_txt .= echo_("Password is empty")."\n";
+    		}
+    		if ($username && $password) {
+    			$error_txt .= echo_("Login Incorrect")."\n";
+    		}
+	    }
+
+    	if (isset($_POST['access']) && $error_txt != "") {
+    		echo($error_txt);
+    	} else {
+    		echo('');
+    	}
+
+        ?>
+	<script>
             function isvalid(){
                 var user = document.form.user.value;
                 var pass = document.form.pass.value;
-                if(user.length=="" && pass.length==""){
-                    alert("Please provide a username and a password");
+                if(user.length=="" || pass.length==""){
                     return false;
                 }
-                else if(user.length==""){
-                    alert("Please provide a username");
-                    return false;
-                }
-                else if(pass.length==""){
-                    alert("Please provide a password");
-                    return false;
-                }
-                
             }
         </script> 
+      
     </body>
 </html>

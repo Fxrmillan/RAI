@@ -28,10 +28,10 @@
 include("navbar.php");
 ?>
 <div class="centered">
-        <a href="platformStats.php?a=12h">Last&nbsp;12&nbsp;Hours</a> | <!-- need to add to translation -->
-        <a href="platformStats.php?a=1d"> <?=echo_('Daily')?></a> |
-        <a href="platformStats.php?a=1w"> <?=echo_('Weekly')?></a> |
-        <a href="platformStats.php?a=1m"> <?=echo_('Monthly')?></a>
+        <a href="platformStats.php?a=12h"> <?php echo _('Last 12 Hours')?></a> | <!-- need to add to translation -->
+        <a href="platformStats.php?a=1d"> <?php echo _('Daily')?></a> |
+        <a href="platformStats.php?a=1w"> <?php echo _('Weekly')?></a> |
+        <a href="platformStats.php?a=1m"> <?php echo _('Monthly')?></a>
 </div>
 <style>
 img {

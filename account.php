@@ -1,4 +1,4 @@
-<?php 
+<?php
     include("connection.php");
     include("logic/accountLogic.php");
 
@@ -33,11 +33,11 @@ p {
 </style>
 <div style="text-align:center"> 
 <img src="assets\userIconTest.PNG">
-<p><?=echo_('Credit Allocated')?> </p>
-<p><?=echo_('Authorised')?>: <?=number_format($c_both)?> MXN</p>
-<p><?=echo_('Not Authorised')?>: <?=number_format($c_na)?> MXN</p>
-<p><?=echo_('Not Paid, Authorised')?>: <?=number_format($c_not_paid_auth)?> MXN</p>
-<p><?=echo_('Total sold to authorised Users')?>: <?=number_format($c_both + $c_not_paid_auth,2)?> MXN</p>
+<p><?php echo _('Credit Allocated')?> </p>
+<p><?php echo _('Authorised')?>: <?=number_format($c_both)?> MXN</p>
+<p><?php echo _('Not Authorised')?>: <?=number_format($c_na)?> MXN</p>
+<p><?php echo _('Not Paid, Authorised')?>: <?=number_format($c_not_paid_auth)?> MXN</p>
+<p><?php echo _('Total sold to authorised Users')?>: <?=number_format($c_both + $c_not_paid_auth,2)?> MXN</p>
 </div>
 </body>
 </html>

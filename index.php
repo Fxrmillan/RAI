@@ -12,11 +12,11 @@ o<?php
     <body>
        
         <div id="form">
-            <h1><?=echo_('Login Form')?></h1> <!-- need to add translation -->
+            <h1><?php echo _('Login Form')?></h1> <!-- need to add translation -->
             <form name="form" action="login.php" onsubmit="return isvalid()" method="POST">
-                <label><?=echo_('Username')?>: </label>
+                <label><?php echo _('Username')?>: </label>
                 <input type="text" id="user" name="username"></br></br>
-                <label><?=echo_('Password:')?> </label>
+                <label><?php echo _('Password:')?> </label>
                 <input type="password" id="pass" name="password"></br></br>
                 <label>Language: </label>
                 <select name="language" id="language"><!-- need to add translation -->
@@ -26,7 +26,7 @@ o<?php
                     <option value="pt_BR" <?=($language=='pt_BR') ? 'selected="selected"' : ''?>data-imagesrc="img/br_flag.png">Português</option>
                     <option value="en" <?=($language=='en') ? 'selected="selected"' : ''?>data-imagesrc="img/en<?=$_code['en']?>_flag.png">English</option> -->
                 </select></br></br>
-                <input type="submit" id="btn" value="<?=echo_('Login')?>"  name = "submit"/>
+                <input type="submit" id="btn" value="<?php echo _('Login')?>"  name = "submit"/>
             </form>
         </div>
         <?php 

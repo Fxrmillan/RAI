@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
     // PostgreSQL connection parameters
     $servername = "localhost"; // or another server IP/hostname
     // $username = "rhizomatica";
@@ -22,7 +22,7 @@
         // Handle connection errors
         die("Could not connect to the database: " . $e->getMessage());
     }
-?> -->
+?>
 <?php
 // Replace these values with your database information
 $host = "localhost"; // Often 'localhost'

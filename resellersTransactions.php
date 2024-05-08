@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Subscribers</title>
+    <title>Resellers Transactions</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
@@ -25,27 +25,19 @@
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th><?php echo _('Activation Date')?></th>
-                <th><?php echo _('Subscription Date')?></th>
-                <th><?php echo _('Subscription Status')?></th>
-                <th><?php echo _('Authorized')?></th>
-                <th><?php echo _('Number')?></th>
-                <th><?php echo _('Name')?></th>
-                <th><?php echo _('Balance')?></th>
-                <th><?php echo _('Location')?></th>
+                <th><?php echo _('Date')?></th>
+                <th><?php echo _('Reseller Number')?></th>
+                <th><?php echo _('Subscriber Number')?></th>
+                <th><?php echo _('Amount Added')?></th>
                 <th></th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th><?php echo _('Activation Date')?></th>
-                <th><?php echo _('Subscription Date')?></th>
-                <th><?php echo _('Subscription Status')?></th>
-                <th><?php echo _('Authorized')?></th>
-                <th><?php echo _('Number')?></th>
-                <th><?php echo _('Name')?></th>
-                <th><?php echo _('Balance')?></th>
-                <th><?php echo _('Location')?></th>
+                <th><?php echo _('Date')?></th>
+                <th><?php echo _('Reseller Number')?></th>
+                <th><?php echo _('Subscriber Number')?></th>
+                <th><?php echo _('Amount Added')?></th>
                 <th></th>
             </tr>
         </tfoot>
@@ -55,18 +47,14 @@
             // Initialize DataTable
             var table = $('#example').DataTable({
                 "ajax": {
-                    "url": "logic/subscribersLogic.php",
+                    "url": "logic/resellerTransactionsLogic.php",
                     "dataSrc": ''
                 },
                 "columns": [
                     { data: "created" }, // TODO
-                    { data: "subscription_date" },
-                    { data: "subscription_status" },
-                    { data: "authorized"},
-                    { data: "msisdn"},
-                    { data: "name"},
-                    { data: "balance"},
-                    { data: "location"},                    
+                    { data: "reseller_msisdn" },
+                    { data: "subscriber_msisdn" },
+                    { data: "amount"},                
                     { data: null, defaultContent: '<button type="button" class="btn btn-danger" id="deleteBtn">Delete</button>' },
                     { data: null, defaultContent: '<button type="button" class="btn btn-primary" >Click</button>' }
                 ]

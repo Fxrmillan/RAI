@@ -13,7 +13,8 @@
         exit; // Important to prevent further script execution
     }
 
-    $siteDataQuery = "SELECT created, subscription_date, subscription_status, authorized, msisdn, name, balance, location FROM subscribers"; 
+    // $siteDataQuery = "SELECT created, msisdn, pin, balance, total_sales FROM resellers";
+    $siteDataQuery = "SELECT * FROM resellers";
     $result = pg_query($conn, $siteDataQuery);
 
     $data = array();

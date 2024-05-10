@@ -1,0 +1,234 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE cdr(
+    id integer PRIMARY KEY,
+    local_ip_v4 inet NOT NULL,
+    caller_id_name character varying,
+    caller_id_number character varying,
+    destination_number character varying NOT NULL,
+    context character varying NOT NULL,
+    start_stamp timestamp with time zone NOT NULL,
+    answer_stamp timestamp with time zone,
+    end_stamp timestamp with time zone NOT NULL,
+    duration integer NOT NULL,
+    billsec integer NOT NULL,
+    hangup_cause character varying NOT NULL,
+    uuid uuid NOT NULL,
+    bleg_uuid uuid,
+    accountcode character varying,
+    read_codec character varying,
+    write_codec character varying,
+    sip_hangup_disposition character varying,
+    ani character varying,
+    destination_name character varying,
+    cost numeric
+);
+
+INSERT INTO cdr (
+    local_ip_v4,
+    caller_id_name,
+    caller_id_number,
+    destination_number,
+    context,
+    start_stamp,
+    answer_stamp,
+    end_stamp,
+    duration,
+    billsec,
+    hangup_cause,
+    uuid,
+    bleg_uuid,
+    accountcode,
+    read_codec,
+    write_codec,
+    sip_hangup_disposition,
+    ani,
+    destination_name,
+    cost
+) VALUES (
+    '192.168.1.100',
+    'John Doe',
+    '+1234567890',
+    '+9876543210',
+    'default',
+    '2024-04-29 12:00:00+00',
+    '2024-04-29 12:05:00+00',
+    '2024-04-29 12:10:00+00',
+    300,
+    240,
+    'NORMAL_CLEARING',
+    uuid_generate_v4(),
+    uuid_generate_v4(),
+    'user123',
+    'PCMU',
+    'PCMU',
+    'NORMAL_CLEARING',
+    '5555555555',
+    'Joe Smith',
+    12.50
+);
+
+CREATE TABLE configuration (
+    limit_local_calls smallint NOT NULL,
+    limit_local_minutes integer,
+    charge_local_calls smallint NOT NULL,
+    charge_local_rate numeric,
+    charge_local_rate_type character varying,
+    charge_internal_calls smallint NOT NULL,
+    charge_internal_rate numeric,
+    charge_internal_rate_type character varying,
+    charge_inbound_calls smallint NOT NULL,
+    charge_inbound_rate numeric,
+    charge_inbound_rate_type character varying,
+    charge_outbound_rate_type character varying,
+    sms_sender_unauthorized character varying,
+    sms_destination_unauthorized character varying
+);
+
+CREATE TABLE credit_history (
+    id integer PRIMARY KEY,
+    receipt_id character varying NOT NULL,
+    msisdn character varying NOT NULL,
+    previous_balance numeric NOT NULL,
+    current_balance numeric NOT NULL,
+    amount numeric NOT NULL,
+    created timestamp without time zone
+);
+
+CREATE TABLE dids (
+    id integer PRIMARY KEY,
+    provider_id integer NOT NULL,
+    subscriber_number character varying,
+    phonenumber character varying NOT NULL,
+    callerid character varying
+);
+
+CREATE TABLE locations (
+    id integer PRIMARY KEY,
+    name character varying NOT NULL
+);
+
+CREATE TABLE meta (
+    id integer PRIMARY KEY,
+    key character varying NOT NULL,
+    value character varying NOT NULL
+);
+
+CREATE TABLE packages (
+	id integer PRIMARY KEY,
+	name character varying NOT NULL,
+	conf character varying
+);
+
+CREATE TABLE providers (
+    id integer PRIMARY KEY,
+    provider_name character varying NOT NULL,
+    prefix character varying NOT NULL,
+    username character varying NOT NULL,
+    fromuser character varying,
+    password character varying NOT NULL,
+    proxy character varying NOT NULL,
+    active smallint NOT NULL,
+    codecs character varying
+);
+
+CREATE TABLE rates (
+    id integer PRIMARY KEY,
+    destination character varying NOT NULL,
+    prefix character varying NOT NULL,
+    cost numeric NOT NULL
+);
+
+CREATE TABLE resellers (
+    id integer PRIMARY KEY,
+    created timestamp without time zone,
+    msisdn character varying NOT NULL,
+    pin character varying NOT NULL,
+    balance numeric NOT NULL,
+    total_sales integer NOT NULL
+);
+
+INSERT INTO resellers (id, created, msisdn, pin, balance, total_sales) VALUES (2, '2023-09-23 12:30:00', '1234', '1234', -1, -1);
+
+CREATE TABLE resellers_configuration (
+    message1 character varying,
+    message2 character varying,
+    message3 character varying,
+    message4 character varying,
+    message5 character varying,
+    message6 character varying
+);
+
+CREATE TABLE resellers_credit_history (
+    id integer NOT NULL PRIMARY KEY,
+    created timestamp without time zone,
+    receipt_id character varying NOT NULL,
+    msisdn character varying NOT NULL,
+    previous_balance numeric,
+    current_balance numeric,
+    amount numeric
+);
+
+CREATE TABLE resellers_transactions (
+    id integer NOT NULL PRIMARY KEY,
+    created timestamp without time zone,
+    reseller_msisdn character varying NOT NULL,
+    subscriber_msisdn character varying NOT NULL,
+    amount numeric
+);
+
+CREATE TABLE site (
+    site_name character varying NOT NULL,
+    postcode character varying NOT NULL,
+    pbxcode character varying NOT NULL,
+    network_name character varying NOT NULL,
+    ip_address character varying NOT NULL
+);
+
+INSERT INTO site(site_name, postcode, pbxcode, network_name, ip_address) VALUES ('name','postcode','pbxcode','network','fake ip');
+
+CREATE TABLE sms (
+    id integer NOT NULL,
+    source_addr character varying NOT NULL,
+    destination_addr character varying NOT NULL,
+    context character varying,
+    send_stamp timestamp without time zone
+);
+
+CREATE TABLE subscribers (
+    id integer NOT NULL,
+    msisdn character varying,
+    name character varying,
+    authorized smallint NOT NULL,
+    balance numeric NOT NULL,
+    subscription_status smallint NOT NULL,
+    subscription_date timestamp without time zone,
+    location character varying,
+    roaming smallint NOT NULL,
+    equipment character varying,
+    package smallint NOT NULL,
+    created timestamp without time zone,
+    mac_addr character varying
+);
+
+INSERT INTO subscribers (id, msisdn, name, authorized, balance, subscription_status, subscription_date, location, roaming, equipment, package, created, mac_addr) VALUES (1, 'i', 'n', 1, 2, 2,'2023-09-01 12:30:00', 'ep', '1', 'e', '5', '2023-09-01 12:30:00', '');
+
+INSERT INTO subscribers (id, msisdn, name, authorized, balance, subscription_status, subscription_date, location, roaming, equipment, package, created, mac_addr) VALUES (2, 'j', 'n2', 1, 2, 2,'2023-09-23 12:30:00', 'ep', '1', 'e', '5', '2023-09-23 12:30:00', '');
+
+CREATE TABLE user_location (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    location_id integer NOT NULL
+);
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    username character varying NOT NULL,
+    password character varying NOT NULL,
+    role character varying,
+    created timestamp without time zone
+);
+
+// ***IMPORTANT*** The insert statement below has the password set to "password" (without the double quotes). DO NOT CHANGE THE VALUE!!!!
+
+INSERT INTO users (id, username, password, role, created) VALUES (1, 'rhizomatica', '$2b$12$7qKCEAsn9EuD65tVpwvD/eBdDmeX/tOgBulxjAF9XW6nA2q2Ae/GS', 'Administrator', '2024-04-11 18:00:00');

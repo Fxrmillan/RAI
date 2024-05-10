@@ -31,7 +31,20 @@ if(isset($_POST['msisdn'])) {
         $table = 'resellers_credit_history';
     } else if(strpos($referer, 'resellersTransactions.php') !== false) {
         $table = 'resellers_transactions';
-    } else {
+    }
+    else if(strpos($referer, 'creditHistory.php') !== false) {
+        $table = 'credit_history';
+    }
+    else if(strpos($referer, 'sms.php') !== false) {
+        $table = 'sms';
+    }
+    else if(strpos($referer, 'callsDetailsRecords.php') !== false) {
+        $table = 'cdr';
+    }
+    else if(strpos($referer, 'rates.php') !== false) {
+        $table = 'rates';
+    }
+    else {
         // Referer does not match expected sources
         echo "Invalid request source.";
         exit;

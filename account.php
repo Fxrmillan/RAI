@@ -32,7 +32,7 @@ p {
 }
 </style>
 <div style="text-align:center"> 
-<img src="assets\userIconTest.PNG">
+<img src="assets\userIcon.PNG">
 <p><?php echo _('Credit Allocated')?> </p>
 <p><?php echo _('Authorised')?>: <?=number_format($c_both)?> MXN</p>
 <p><?php echo _('Not Authorised')?>: <?=number_format($c_na)?> MXN</p>
